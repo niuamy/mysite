@@ -1,0 +1,13 @@
+#Virtual Environment
+env/
+
+#Flask
+instance/*
+!instance/.gitifnore
+.webassets-cache
+
+#Flask.Python Stack
+#Byte-Compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
