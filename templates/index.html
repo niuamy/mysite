@@ -1,14 +1,18 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-  Hi! I'm Amy. What's your name?
+  Hello! What's your name?
 {% endblock %}
 
 {% block body %}
+  <div class="nameInput">
     <form action="{{ url_for('hello') }}" method="post">
-      <input type="text" name="name" placeholder="first name">
-      <button>Submit</button>
+      <center>
+        <input type="text" name="name" placeholder="first name">
+        <button>Submit</button>
+      </center>
     </form>
+  </div>
 {% endblock %}
 
 <!DOCTYPE html>
