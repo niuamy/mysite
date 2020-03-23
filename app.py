@@ -11,3 +11,7 @@ def index():
 def hello():
     name = request.form.get("name")
     return render_template("hello.html", name=name)
+
+@app.route('/welcome', methods=["POST"])
+def welcome():
+    return render_template("welcome.html")

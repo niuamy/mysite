@@ -1,5 +1,113 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="web design project">
+    <meta name="keywords" content="web design, project">
+    <meta name="author" content="amy">
+    <title>Amy Niu | Welcome</title>
+    <style>
+      *{
+        margin: 0;
+        padding:0;
+       }
 
-{% block heading %}
-  Hey, {{ name }}!
-{% endblock %}
+      body{
+        background-color: #EFCC81;
+      }
+      h1{
+        color: white;
+        font-family:serif;
+        text-align: center;
+        font-size: 120px;
+        padding: 170px 0 70px 0;
+      }
+
+      input[type=text], select {
+        color: gray;
+        font-size: 30px;
+        font-family: serif;
+        width: 60%;
+        padding: 20px 30px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin: 70px 0;
+      }
+
+       button {
+        background-color: #EFCC81;
+        border: 3px solid white;
+        border-radius: 4px;
+        color: white;
+        padding: 18px 48px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        font-family: serif;
+        margin: 4px 10px;
+        transition-duration: 0.2s;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: white;
+        color:#EFCC81 ;
+      }
+
+      button.friend{
+        padding: 18px 54px;
+      }
+
+      button.other{
+        padding: 18px 61px;
+      }
+
+      input.hide{
+        display: none;
+      }
+
+      input.show{
+        display:inline;
+      }
+
+      button.hide{
+        display: none;
+      }
+
+      button.show{
+        display:inline;
+      }
+      form{
+        display: inline;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <script>
+      function onButtonClick(){
+        document.getElementById('otherInput').className="show";
+        document.getElementById('otherSubmit').className="show";
+      }
+    </script>
+    <h1> Hey, {{name}}! <br/> How do I know you? </h1>
+    <div class="nameInput">
+      <center>
+        <form action="{{ url_for('welcome') }}" method="post">
+            <button class="recruiter">Recruiter</button>
+            <button class="friend">Friend</button>
+        </form>
+        <button class="other" onclick="onButtonClick()">Other</button>
+        <br/>
+        <form action="{{ url_for('welcome') }}" method="post">
+          <input class="hide" type="text" name="otherResponse" id="otherInput">
+          <button class="hide" id="otherSubmit">Submit</button>
+        </form>
+      </center>
+    </div>
+  </body>
