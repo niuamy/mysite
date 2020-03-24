@@ -98,13 +98,15 @@
     <h1> Hey, {{name}}! <br/> How do I know you? </h1>
     <div class="nameInput">
       <center>
-        <form action="{{ url_for('welcome') }}" method="post">
-            <button class="recruiter">Recruiter</button>
-            <button class="friend">Friend</button>
+        <form action="{{ url_for('welcomeRecruiter') }}" method="post">
+          <button class="recruiter">Recruiter</button>
+        </form>
+        <form action="{{ url_for('welcomeFriend') }}" method="post">
+          <button class="friend">Friend</button>
         </form>
         <button class="other" onclick="onButtonClick()">Other</button>
         <br/>
-        <form action="{{ url_for('welcome') }}" method="post">
+        <form action="{{ url_for('welcomeRecruiter') }}" method="post">
           <input class="hide" type="text" name="otherResponse" id="otherInput">
           <button class="hide" id="otherSubmit">Submit</button>
         </form>

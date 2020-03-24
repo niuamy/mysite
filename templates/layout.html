@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    {% block head %}
+    {% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="web design project">
@@ -56,6 +58,8 @@
         background-color: white;
         color:#EFCC81 ;
       }
+      {% block style %}
+      {% endblock %}
 
     </style>
 
