@@ -38,8 +38,10 @@ def friend():
     with app.app_context():
         friendMSG = request.form.get("friendMessage")
         msgBody = str(friendMSG)
-        msg = Message(subject="A Friend Wants to Meet Up!", sender="FILL IN", recipients=["FILL IN"],body=msgBody)
-        mail.send(msg)
+        sender = app.config.get("MAIL_USERNAME")
+        msg = Message(subject="A Friend Wants to Meet Up!", sender=sender, recipients=["FILL IN"],body=msgBody)
+        if sender != "FILL IN":
+            mail.send(msg)
     return render_template("friend.html")
 
 if __name__ == '__main__':
