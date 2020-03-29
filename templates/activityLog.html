@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block style %}
+table,td, th{
+  margin:-5% 25% 0 25%;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  padding: 15px 40px;
+  border-collapse: collapse;
+  border: 1px solid white;
+}
+th{
+  font-size: 30px;
+}
+{% endblock %}
+{% block heading %}
+<center>
+  <table>
+    <tr>
+      <th> id </th>
+      <th> name </th>
+      <th> date </th>
+    </tr>
+    {% for person in people %}
+      <tr>
+        <td> {{person.id}} </td>
+        <td> {{person.name}} </td>
+        <td> {{person.date_created.date()}} </td>
+      </tr>
+    {% endfor %}
+  </table>
+</center>
+{% endblock %}

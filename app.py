@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 from flask_mail import Mail, Message
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
-
 mail_settings ={
     "MAIL_SERVER": 'smtp.gmail.com',
     "MAIL_PORT": 465,
@@ -11,10 +12,17 @@ mail_settings ={
     "MAIL_USERNAME": "FILL IN",
     "MAIL_PASSWORD": "FILL IN"
 }
-
 app.config.update(mail_settings)
 mail = Mail(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def __repr__(self):
+        return f"Todo('{self.id}', '{self.name}', '{self.date_created}')"
 
 @app.route('/')
 def index():
@@ -23,7 +31,13 @@ def index():
 @app.route('/hello', methods=["POST"])
 def hello():
     name = request.form.get("name")
-    return render_template("hello.html", name=name)
+    new_name = Todo(name = name)
+    try:
+        db.session.add(new_name)
+        db.session.commit()
+        return render_template("hello.html", name=name)
+    except:
+        return 'ERROR!'
 
 @app.route('/welcomeRecruiter', methods=["POST"])
 def welcomeRecruiter():
@@ -43,6 +57,11 @@ def friend():
         if sender != "FILL IN":
             mail.send(msg)
     return render_template("friend.html")
+
+@app.route('/activityLog', methods=["POST"])
+def activityLog():
+    people = Todo.query.all()
+    return render_template("activityLog.html", people=people)
 
 if __name__ == '__main__':
     app.run(debug=True)
