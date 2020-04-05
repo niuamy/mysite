@@ -58,29 +58,18 @@
         color:#EFCC81 ;
       }
 
+      button.recruiter{
+        padding: 18px 62px;
+      }
+
       button.friend{
-        padding: 18px 54px;
+        padding: 18px 75px;
       }
 
       button.other{
-        padding: 18px 61px;
+        padding: 18px 46px;
       }
 
-      input.hide{
-        display: none;
-      }
-
-      input.show{
-        display:inline;
-      }
-
-      button.hide{
-        display: none;
-      }
-
-      button.show{
-        display:inline;
-      }
       form{
         display: inline;
       }
@@ -89,12 +78,6 @@
 
   </head>
   <body>
-    <script>
-      function onButtonClick(){
-        document.getElementById('otherInput').className="show";
-        document.getElementById('otherSubmit').className="show";
-      }
-    </script>
     <h1> Hey, {{name}}! <br/> How do I know you? </h1>
     <div class="nameInput">
       <center>
@@ -104,11 +87,8 @@
         <form action="{{ url_for('welcomeFriend') }}" method="post">
           <button class="friend">Friend</button>
         </form>
-        <button class="other" onclick="onButtonClick()">Other</button>
-        <br/>
         <form action="{{ url_for('activityLog') }}" method="post">
-          <input class="hide" type="text" name="otherResponse" id="otherInput">
-          <button class="hide" id="otherSubmit">Submit</button>
+          <button class="other">Activity Log</button>
         </form>
       </center>
     </div>
